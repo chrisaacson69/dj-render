@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dj-render"
+version = "0.0.1"
+description = "Render a DJ mix spec to audio: time-stretch, EQ, crossfade, gain. Grid results in, audio out."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["numpy", "scipy", "soundfile", "pyrubberband"]
+
+[project.optional-dependencies]
+dev = ["pytest", "import-linter"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+# --- The constitution: the renderer takes grid results and never computes them. ---
+[tool.importlinter]
+root_package = "dj_render"
+include_external_packages = true
+
+[[tool.importlinter.contracts]]
+name = "Renders from grid results: no analysis code (librosa, dj-score)"
+type = "forbidden"
+source_modules = ["dj_render"]
+forbidden_modules = ["librosa", "dj_score"]

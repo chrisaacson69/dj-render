@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+.pytest_cache/
+.import_linter_cache/
+# audio, specs and renders never go in this (public) repo: they live in the music library
+*.wav
+*.mp3
+*.flac
+*.m4a
+.env
